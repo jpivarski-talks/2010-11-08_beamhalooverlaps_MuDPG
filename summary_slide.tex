@@ -1,0 +1,67 @@
+\documentclass[compress]{beamer}
+\usepackage{ifthen,verbatim}
+
+\newcommand{\isnote}{}
+\xdefinecolor{lightyellow}{rgb}{1.,1.,0.25}
+\xdefinecolor{darkblue}{rgb}{0.1,0.1,0.7}
+
+%% Uncomment this to get annotations
+%% \def\notes{\addtocounter{page}{-1}
+%%            \renewcommand{\isnote}{*}
+%% 	   \beamertemplateshadingbackground{lightyellow}{white}
+%%            \begin{frame}
+%%            \frametitle{Notes for the previous page (page \insertpagenumber)}
+%%            \itemize}
+%% \def\endnotes{\enditemize
+%% 	      \end{frame}
+%%               \beamertemplateshadingbackground{white}{white}
+%%               \renewcommand{\isnote}{}}
+
+%% Uncomment this to not get annotations
+\def\notes{\comment}
+\def\endnotes{\endcomment}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{\mbox{ } \hfill
+\begin{minipage}{5.5 cm}
+\vspace{-0.75 cm} \small
+\end{minipage} \hfill
+\begin{minipage}{4.5 cm}
+\vspace{-0.75 cm} \small
+\begin{flushright}
+\ifthenelse{\equal{\insertpagenumber}{1}}{}{Jim Pivarski \hspace{0.2 cm} \insertpagenumber\isnote/\pageref{numpages}}
+\end{flushright}
+\end{minipage}\mbox{\hspace{0.2 cm}}\includegraphics[height=1 cm]{../cmslogo} \hspace{0.1 cm} \includegraphics[height=1 cm]{../tamulogo} \hspace{0.01 cm} \vspace{-1.05 cm}}
+
+\newcommand{\s}[1]{{\mbox{\scriptsize #1}}}
+
+\begin{document}
+\begin{frame}
+\frametitle{Summary of proposed alignments}
+
+\begin{itemize}
+\item Barrel geometry:
+\begin{itemize}
+\item internal (DT chambers relative to one another): hardware alignment system
+\item relative to tracker: tracks from collisions (implemented as GlobalPositionRcd)
+\end{itemize}
+
+\item Endcap geometry:
+\begin{itemize}
+\item internal (CSC chambers relative to one another in rings): beam-halo in the overlaps between pairs of chambers, with a few constraints from photogrammetry and collisions
+\item rings relative to tracker: tracks from collisions (implemented in CSCAlignmentRcd)
+\end{itemize}
+
+\item Status:
+\begin{itemize}
+\item internal DT alignment and GlobalPositionRcd are complete
+\item internal CSC alignment is complete
+\item CSC rings relative to tracker need to be updated with latest tracker description and GlobalPositionRcd
+\end{itemize}
+
+\end{itemize}
+
+\label{numpages}
+\end{frame}
+
+\end{document}
